@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jsspace/bead-colors-mcp",
+  "title": "Meltbead Craft Colors",
+  "description": "Search craft color palettes and match shades by CIEDE2000 with Meltbead.",
+  "websiteUrl": "https://meltbead.com/",
+  "repository": {
+    "url": "https://github.com/jsspace/bead-colors-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@meltbead/bead-colors-mcp",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" }
+    }
+  ]
+}

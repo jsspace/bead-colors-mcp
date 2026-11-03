@@ -1,13 +1,24 @@
 {
   "name": "@meltbead/bead-colors-mcp",
   "version": "0.1.0",
-  "description": "Local MCP server for craft color palettes and perceptual screen-color matching",
+  "description": "Meltbead MCP server for craft color palettes and perceptual screen-color matching",
+  "homepage": "https://meltbead.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsspace/bead-colors-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jsspace/bead-colors-mcp/issues"
+  },
+  "author": "Meltbead (https://meltbead.com/)",
+  "keywords": ["mcp", "mcp-server", "bead-colors", "craft-colors", "perler", "hama", "artkal", "mard", "dmc", "ciede2000"],
+  "mcpName": "io.github.jsspace/bead-colors-mcp",
   "type": "module",
   "license": "(MIT AND CC-BY-4.0)",
   "bin": {
     "bead-colors-mcp": "./src/index.js"
   },
-  "files": ["src/", "scripts/", "data/", "README.md", "DATA_SOURCES.md", "LICENSE-DATA.md", "LICENSE"],
+  "files": ["src/", "scripts/", "data/", "server.json", "README.md", "DATA_SOURCES.md", "LICENSE-DATA.md", "LICENSE"],
   "scripts": {
     "start": "node src/index.js",
     "build:csv": "node scripts/build-csv.js",
