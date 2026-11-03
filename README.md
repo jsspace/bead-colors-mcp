@@ -27,9 +27,11 @@ The server uses stdio: an MCP client launches it and communicates through stdin/
 
 Package: [@meltbead/bead-colors-mcp on npm](https://www.npmjs.com/package/@meltbead/bead-colors-mcp).
 
+Official listing: [Meltbead Craft Colors on the MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.jsspace/bead-colors-mcp).
+
 ## Registry listing
 
-[`server.json`](server.json) describes this stdio package for the [official MCP Registry](https://github.com/modelcontextprotocol/registry/blob/main/docs/modelcontextprotocol-io/quickstart.mdx). Its website link points to [Meltbead](https://meltbead.com/). Publish the npm package first, then validate and publish the listing with `mcp-publisher`. Keep the versions in `package.json`, `src/index.js`, and `server.json` aligned for each release. The Registry name uses the GitHub owner `jsspace` for ownership verification.
+The server is listed as `io.github.jsspace/bead-colors-mcp` in the official MCP Registry. [`server.json`](server.json) describes the stdio package and links to [Meltbead](https://meltbead.com/). For future releases, publish the npm package first, then validate and publish the updated listing with `mcp-publisher`. Keep the versions in `package.json`, `src/index.js`, and `server.json` aligned. The Registry name uses the GitHub owner `jsspace` for ownership verification.
 
 The project-level [`.npmrc`](.npmrc) and `publishConfig.registry` in `package.json` use the official npm registry even if your user-level npm configuration points to another registry. Log in to the official registry before publishing:
 
