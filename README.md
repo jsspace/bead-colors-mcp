@@ -6,31 +6,39 @@ A local MCP server for craft color charts and approximate screen-color matching.
 
 Node.js 20 or newer.
 
-## Run locally
+## Install from npm
 
 ```sh
-npm install
-npm start
+npx -y @meltbead/bead-colors-mcp
 ```
 
-The server uses stdio: an MCP client launches it and communicates through stdin/stdout. Starting it in a terminal will appear idle until a client connects. For a local client configuration, use an absolute path:
+The server uses stdio: an MCP client launches it and communicates through stdin/stdout. Starting it in a terminal will appear idle until a client connects. Add this configuration to an MCP client:
 
 ```json
 {
   "mcpServers": {
     "bead-colors": {
-      "command": "node",
-      "args": ["/absolute/path/to/bead-colors-mcp/src/index.js"]
+      "command": "npx",
+      "args": ["-y", "@meltbead/bead-colors-mcp"]
     }
   }
 }
 ```
 
-After publishing the npm package, clients can use `npx -y @meltbead/bead-colors-mcp` instead.
+Package: [@meltbead/bead-colors-mcp on npm](https://www.npmjs.com/package/@meltbead/bead-colors-mcp).
 
 ## Registry listing
 
 [`server.json`](server.json) describes this stdio package for the [official MCP Registry](https://github.com/modelcontextprotocol/registry/blob/main/docs/modelcontextprotocol-io/quickstart.mdx). Its website link points to [Meltbead](https://meltbead.com/). Publish the npm package first, then validate and publish the listing with `mcp-publisher`. Keep the versions in `package.json`, `src/index.js`, and `server.json` aligned for each release. The Registry name uses the GitHub owner `jsspace` for ownership verification.
+
+The project-level [`.npmrc`](.npmrc) and `publishConfig.registry` in `package.json` use the official npm registry even if your user-level npm configuration points to another registry. Log in to the official registry before publishing:
+
+```sh
+npm login --registry=https://registry.npmjs.org/
+npm whoami --registry=https://registry.npmjs.org/
+npm pack --dry-run
+npm publish --access public
+```
 
 ## Tools
 
@@ -54,11 +62,13 @@ Every color result includes a reminder to verify important shades against physic
 ## Develop
 
 ```sh
+npm install
+npm start
 npm test
 npm run smoke
 ```
 
-`smoke` starts the service through a real MCP stdio client, lists its tools, and calls them.
+`npm start` runs the local source server. `smoke` starts it through a real MCP stdio client, lists its tools, and calls them.
 
 ## License and data sources
 
