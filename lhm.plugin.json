@@ -1,0 +1,169 @@
+{
+  "author": "Meltbead (https://meltbead.com/)",
+  "description": "Search craft color palettes and match shades by CIEDE2000 with Meltbead.",
+  "homepage": "https://meltbead.com/",
+  "identifier": "jsspace-bead-colors-mcp",
+  "name": "Meltbead Craft Colors",
+  "prompts": [],
+  "resources": [],
+  "tags": [
+    "mcp",
+    "mcp-server",
+    "bead-colors",
+    "craft-colors",
+    "perler",
+    "hama",
+    "artkal",
+    "mard",
+    "dmc",
+    "ciede2000"
+  ],
+  "tools": [
+    {
+      "name": "list_palettes",
+      "description": "List craft color palettes with counts, source links, license, and data confidence status.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "list_mard_kits",
+      "description": "List MARD retail box sizes and the exact bead codes included in each box; optionally select one size.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "get_color",
+      "description": "Look up one craft color by palette ID and product code. Accepts common code separators and Delica shorthand.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "paletteId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Palette ID from list_palettes, such as perler or artkal-m"
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "paletteId",
+          "code"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "search_colors",
+      "description": "Search codes, names, HEX values, brands, or series. Without paletteId, searches representative palettes to avoid subset duplicates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1
+          },
+          "paletteId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Palette ID from list_palettes, such as perler or artkal-m"
+          },
+          "limit": {
+            "default": 20,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "nearest_colors",
+      "description": "Find nearest screen reference colors in one palette by CIEDE2000 (ΔE00). Excludes effect finishes by default.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "hex": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "paletteId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Palette ID from list_palettes, such as perler or artkal-m"
+          },
+          "limit": {
+            "default": 5,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "includeEffects": {
+            "default": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "hex",
+          "paletteId"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "match_across_palettes",
+      "description": "Find one approximate screen-color match per selected craft palette, starting from HEX or a product code. Uses CIEDE2000 (ΔE00).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "hex": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "sourcePaletteId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Palette ID from list_palettes, such as perler or artkal-m"
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "targetPaletteIds": {
+            "minItems": 1,
+            "maxItems": 19,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Palette ID from list_palettes, such as perler or artkal-m"
+            }
+          },
+          "includeEffects": {
+            "default": false,
+            "type": "boolean"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    }
+  ],
+  "version": "0.1.0"
+}
